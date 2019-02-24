@@ -1010,7 +1010,7 @@ class Application(Frame):
 
 
 root = Tk()
-root.title("KJ Ambery")
+root.title("KJ KCX KCO")
 root.geometry("580x670")
 
 
