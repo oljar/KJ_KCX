@@ -55,7 +55,7 @@ class Application(Frame):
         self.nr_zlec(State)
         self.identyfikacja(State)
         self.tab_znamionowa(State)
-        self.pozostale_nalepki(State)
+        self.zasleki_raczki(State)
         self.estetyka(State)
         self.kapturki_srub (State)
         self.izolacja_filtry_uszczelki(State)
@@ -139,7 +139,7 @@ class Application(Frame):
 
 ########################################################################################################################################################################################
 
-    #poziom lini kod produktu
+
 
     def kod_prod(self,State):
 
@@ -174,10 +174,6 @@ class Application(Frame):
 
 
 ########################################################################################################################################################################################
-
-
-
-    #poziom lini nr_zlecenia
 
 
     def nr_zlec(self,State):
@@ -217,9 +213,6 @@ class Application(Frame):
 ########################################################################################################################################################################################
 
 
-    #poziom lini identyfikacja
-
-
     def identyfikacja(self,State):
 
 
@@ -256,7 +249,7 @@ class Application(Frame):
     #poziom lini filtry uszczelka
     def tab_znamionowa(self,State):
 
-        self.lbl_filter_gasket = Label(self, text ="Tab. zn-wa, klasa ener-czna, ozn. króćców")
+        self.lbl_filter_gasket = Label(self, text ="Tab. zn-wa, klasa ener-czna")
         self.lbl_filter_gasket.grid(row = 4, column = 1,sticky = W )
 
         self.filter_gasket = StringVar()
@@ -296,12 +289,53 @@ class Application(Frame):
 ######################################################################################################################################################################################
 
 
+    #poziom lini filtry uszczelka
+    def tab_znamionowa(self,State):
+
+        self.lbl_filter_gasket = Label(self, text ="Oznaczenie króćców")
+        self.lbl_filter_gasket.grid(row = 4, column = 1,sticky = W )
+
+        self.filter_gasket = StringVar()
+
+        self.filter_gasket.set(State[0][5])
+
+
+        Radiobutton(self,
+                    text =  "Tak",
+                    variable = self.filter_gasket,
+                    value = "Pozytyw",
+                   # command = self.update_text
+                    ).grid(row = 4, column = 4,sticky=W)
+
+        Radiobutton(self,
+                    text =  "Nie",
+                    variable = self.filter_gasket,
+                    value = "Negatyw",
+                   #command = self.update_text
+                    ).grid(row = 4, column = 4,sticky=E)
+
+
+# Wyswietlanie stanu  z bazy
+
+        if  State[0][1]!=0 :
+            self.lbl_filter_gasket_info = Label(self,text=State[0][5])
+            self.lbl_filter_gasket_info.grid(row = 4, column = 7)
+
+
+        self.lbl_dist_9=Label(self)
+        self.lbl_dist_9.grid(row = 100, column = 5 , pady=2)
+
+
+
+
+######################################################################################################################################################################################
+
 
 
     #poziom lini szczelnosc wymiennika
-    def pozostale_nalepki(self,State):
+    def zasleki_raczki(self,State):
 
-        self.lbl_czynnosc = Label(self, text ="Pozostałe naklejki, zaślepki srub , rączki")
+        self.lbl_czynnosc = Label(self, text ="Zaślepki srub, rączki, pozost.naklejki")
         self.lbl_czynnosc.grid(row = 5, column = 1,sticky = W )
 
         self.szczel_wymien = StringVar()
@@ -421,11 +455,58 @@ class Application(Frame):
 
 
 
+    #poziom lini Poprawność montażu NW
+    def kapturki_srub (self,State):
+
+        self.lbl_czynnosc = Label(self, text ="poprawnosc ułożenia izolacji" )
+        self.lbl_czynnosc.grid(row = 7, column = 1,sticky = W )
+
+        self.mon_NW = StringVar()
+
+        self.mon_NW.set(State[0][8])
+
+
+        Radiobutton(self,
+                    text =  "Tak",
+                    variable = self.mon_NW,
+                    value = "Pozytyw",
+                    ).grid(row = 7, column = 4,sticky=W)
+
+        Radiobutton(self,
+                    text =  "Nie",
+                    variable = self.mon_NW,
+                    value = "Negatyw",
+                    ).grid(row = 7, column = 4,sticky=E)
+
+        Radiobutton(self,
+                    text =  "Brak",
+                    variable = self.mon_NW,
+                    value = "Brak",
+                    ).grid(row = 7, column = 6,sticky=E, padx=15)
+
+
+# Wyswietlanie stanu  z bazy
+
+        if  State[0][1]!=0 :
+            self.lbl_czynnosc_info = Label(self,text=State[0][8])
+            self.lbl_czynnosc_info.grid(row = 7, column = 7)
+
+
+        self.lbl_dist_9=Label(self)
+        self.lbl_dist_9.grid(row = 100, column = 5 , pady=2)                                       #dystans col  9
+
+
+
+
+########################################################################################################################################################################################
+
+
+
     #poziom lini Poprawność motażu układu sterownia - wart. zabezp. nadprąd.
     def izolacja_filtry_uszczelki(self,State):
 
 
-        self.lbl_czynnosc = Label(self, text ="Izolacja- spasowana, filtry, uszczelki " )
+        self.lbl_czynnosc = Label(self, text ="Filtry, uszczelki " )
         self.lbl_czynnosc.grid(row = 8, column = 1,sticky = W )
 
         self.mon_roz = StringVar()
@@ -690,7 +771,7 @@ class Application(Frame):
     def zamki_drzwi_oznaczenia  (self,State):
 
 
-        self.lbl_czynnosc = Label(self, text ="Zamki drzwi, oznacznia, rączki" )
+        self.lbl_czynnosc = Label(self, text ="Spasowanie dzwi i zamków, oznacznia, rączki" )
         self.lbl_czynnosc.grid(row = 15, column = 1,sticky = W )
 
         self.kontr_ozn = StringVar()
@@ -829,7 +910,39 @@ class Application(Frame):
 
 #######################################################################################################################################################################################
 
+#######################################################################################################################################################################################
+    #poziom Kontrola dokręcenia paskow osłon
 
+    def Oznaczenie_KJ (self,State):
+
+
+        self.lbl_czynnosc = Label(self, text ="Oznaczene KJ" )
+        self.lbl_czynnosc.grid(row = 16, column = 1,sticky = W )
+
+        self.dokr_pas = StringVar()
+
+        self.dokr_pas.set(State[0][17])
+
+
+        Radiobutton(self,
+                    text =  "Tak",
+                    variable = self.dokr_pas,
+                    value = "Pozytyw",
+                    ).grid(row = 16, column = 4,sticky=W)
+
+        Radiobutton(self,
+                    text =  "Nie",
+                    variable = self.dokr_pas,
+                    value = "Negatyw",
+                    ).grid(row = 16, column = 4,sticky=E)
+
+
+# Wyswietlanie stanu  z bazy
+
+        if  State[0][1]!=0 :
+            self.lbl_czynnosc_info = Label(self,text=State[0][17])
+            self.lbl_czynnosc_info.grid(row = 16, column = 7)
+                                             #dystans col  9
 
 
     #poziom Kompletnosc dostawy
