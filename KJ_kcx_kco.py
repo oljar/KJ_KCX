@@ -270,12 +270,9 @@ class Application(Frame):
 # Wyswietlanie stanu  z bazy
 
         if  State[0][1]!=0 :
-            self.lbl_filter_gasket_info = Label(self,text=State[0][5])
-            self.lbl_filter_gasket_info.grid(row = 4, column = 7)
+            self.lbl_czynnosc_info = Label(self,text=State[0][5])
+            self.lbl_czynnosc_info.grid(row = 4, column = 7)
 
-
-        self.czynnosc=Label(self)
-        self.czynnosc.grid(row = 100, column = 5 , pady=2)
 
 
 
@@ -287,21 +284,21 @@ class Application(Frame):
         self.czynnosc = Label(self, text ="Tab.klasa energetyczna, ozn. krócców")
         self.czynnosc.grid(row = 5, column = 1,sticky = W )
 
-        self.filter_gasket = StringVar()
+        self.kla_en_oz_kr = StringVar()
 
-        self.filter_gasket.set(State[0][6])
+        self.kla_en_oz_kr.set(State[0][6])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.filter_gasket,
+                    variable = self.kla_en_oz_kr,
                     value = "Pozytyw",
                    # command = self.update_text
                     ).grid(row = 5, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.filter_gasket,
+                    variable = self.kla_en_oz_kr,
                     value = "Negatyw",
                    #command = self.update_text
                     ).grid(row = 5, column = 4,sticky=E)
@@ -310,12 +307,10 @@ class Application(Frame):
        # Wyswietlanie stanu  z bazy
 
         if  State[0][1]!=0 :
-            self.lbl_filter_gasket_info = Label(self,text=State[0][6])
-            self.lbl_filter_gasket_info.grid(row = 5, column = 7)
+            self.lbl_czynnosc_info = Label(self,text=State[0][6])
+            self.lbl_czynnosc_info.grid(row = 5, column = 7)
 
 
-        self.czynnosc_info=Label(self)
-        self.czynnosc_info.grid(row = 100, column = 5 , pady=2)
 
 
 
@@ -330,20 +325,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Zaślepki srub, rączki")
         self.lbl_czynnosc.grid(row = 6, column = 1,sticky = W )
 
-        self.szczel_wymien = StringVar()
+        self.zasl_raczki= StringVar()
 
-        self.szczel_wymien.set(State[0][7])
+        self.zasl_raczki.set(State[0][7])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.szczel_wymien,
+                    variable = self.zasl_raczki,
                     value = "Pozytyw",
                     ).grid(row = 6, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.szczel_wymien,
+                    variable = self.zasl_raczki,
                     value = "Negatyw",
                     ).grid(row = 6, column = 4,sticky=E)
 
@@ -364,20 +359,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Estetyka - silikonowanie , porysowania ")
         self.lbl_czynnosc.grid(row = 7, column = 1,sticky = W )
 
-        self.prow_kon_przew = StringVar()
+        self.est_silik_rysy = StringVar()
 
-        self.prow_kon_przew.set(State[0][8])
+        self.est_silik_rysy.set(State[0][8])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.prow_kon_przew,
+                    variable = self.est_silik_rysy ,
                     value = "Pozytyw",
                     ).grid(row = 7, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.prow_kon_przew,
+                    variable = self.est_silik_rysy ,
                     value = "Negatyw",
                     ).grid(row = 7, column = 4,sticky=E)
 
@@ -398,20 +393,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Kapturki srub nagrzew, znaczki uziemień" )
         self.lbl_czynnosc.grid(row = 8, column = 1,sticky = W )
 
-        self.mon_NW = StringVar()
+        self.kapt_srub_uziem = StringVar()
 
-        self.mon_NW.set(State[0][9])
+        self.kapt_srub_uziem.set(State[0][9])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.mon_NW,
+                    variable = self.kapt_srub_uziem,
                     value = "Pozytyw",
                     ).grid(row = 8, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.mon_NW,
+                    variable = self.kapt_srub_uziem,
                     value = "Negatyw",
                     ).grid(row = 8, column = 4,sticky=E)
 
@@ -423,8 +418,6 @@ class Application(Frame):
             self.lbl_czynnosc_info.grid(row = 8, column = 7)
 
 
-        self.lbl_dist_9=Label(self)
-        self.lbl_dist_9.grid(row = 100, column = 5 , pady=2)                                       #dystans col  9
 
 
 
@@ -441,20 +434,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Izolacja, uszczelki" )
         self.lbl_czynnosc.grid(row = 9, column = 1,sticky = W )
 
-        self.mon_roz = StringVar()
+        self.izol_uszcz = StringVar()
 
-        self.mon_roz.set(State[0][10])
+        self.izol_uszcz.set(State[0][10])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.mon_roz,
+                    variable = self.izol_uszcz,
                     value = "Pozytyw",
                     ).grid(row = 9, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.mon_roz,
+                    variable = self.izol_uszcz,
                     value = "Negatyw",
                     ).grid(row = 9, column = 4,sticky=E)
 
@@ -475,20 +468,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Filtry" )
         self.lbl_czynnosc.grid(row = 10, column = 1,sticky = W )
 
-        self.mon_roz = StringVar()
+        self.mon_filtr = StringVar()
 
-        self.mon_roz.set(State[0][11])
+        self.mon_filtr(State[0][11])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.mon_roz,
+                    variable = self.mon_filtr,
                     value = "Pozytyw",
                     ).grid(row = 10, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.mon_roz,
+                    variable = self.mon_filtr,
                     value = "Negatyw",
                     ).grid(row = 10, column = 4,sticky=E)
 
@@ -512,20 +505,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Taca ociekowa - szczel.-malow.-silk-nie")
         self.lbl_czynnosc.grid(row = 11, column = 1,sticky = W )
 
-        self.dzial_went = StringVar()
+        self.tac_ociek = StringVar()
 
-        self.dzial_went.set(State[0][12])
+        self.tac_ociek.set(State[0][12])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.dzial_went,
+                    variable = self.tac_ociek,
                     value = "Pozytyw",
                     ).grid(row = 11, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.dzial_went,
+                    variable = self.tac_ociek,
                     value = "Negatyw",
                     ).grid(row = 11, column = 4,sticky=E)
 
@@ -547,20 +540,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Bypass - montaż i działanie, szczelność" )
         self.lbl_czynnosc.grid(row = 12, column = 1,sticky = W )
 
-        self.mon_czujn = StringVar()
+        self.mon_bypas = StringVar()
 
-        self.mon_czujn.set(State[0][13])
+        self.mon_bypas.set(State[0][13])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.mon_czujn,
+                    variable = self.mon_bypas,
                     value = "Pozytyw",
                     ).grid(row = 12, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.mon_czujn,
+                    variable = self.mon_bypas,
                     value = "Negatyw",
                     ).grid(row = 12, column = 4,sticky=E)
 
@@ -581,20 +574,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Wentylatory- montaż , działnie" )
         self.lbl_czynnosc.grid(row = 13, column = 1,sticky = W )
 
-        self.dzial_NW = StringVar()
+        self.went = StringVar()
 
-        self.dzial_NW.set(State[0][14])
+        self.went(State[0][14])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.dzial_NW,
+                    variable = self.went,
                     value = "Pozytyw",
                     ).grid(row = 13, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.dzial_NW,
+                    variable = self.went,
                     value = "Negatyw",
                     ).grid(row = 13, column = 4,sticky=E)
 
@@ -615,20 +608,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Czujniki temeratur -montaż, działanie" )
         self.lbl_czynnosc.grid(row = 14, column = 1,sticky = W )
 
-        self.ustaw_ster = StringVar()
+        self.czujn_temp = StringVar()
 
-        self.ustaw_ster.set(State[0][15])
+        self.czujn_temp.set(State[0][15])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.ustaw_ster,
+                    variable = self.czujn_temp,
                     value = "Pozytyw",
                     ).grid(row = 14, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.ustaw_ster,
+                    variable = self.czujn_temp,
                     value = "Negatyw",
                     ).grid(row = 14, column = 4,sticky=E)
 
@@ -1001,18 +994,19 @@ class Application(Frame):
         contens3 = str(self.ent_nr_zlec.get())
         id1 = self.identity.get()
         id2 = self.tab_znam_nakl.get()
+        id3 = self.kla_en_oz_kr.get()
+        id4 = self.zasl_raczki.get()
+        id5 = self.est_silik_rysy.get()
+        id6 = self.kapt_srub_uziem.get()
+        id7 = self.izol_uszcz.get()
+        id8 = self.mon_filtr.get()
+        id9 = self.tac_ociek.get()
+        id10 = self.mon_bypas.get()
+        id11 = self.went.get()
 
-        id3 = self.szczel_wymien.get()
-        id4 = self.prow_kon_przew.get()
-        id5 = self.mon_NW.get()
-        id6 = self.mon_roz.get()
-        id7 = self.dzial_went.get()
-        id8 = self.mon_czujn.get()
-        id9 = self.dzial_NW.get()
-        id10 = self.ustaw_ster.get()
-        id11 = self.kontr_metrel.get()
-        id12 = self.kontr_ozn.get()
+        id12 = self.czujn_temp.get()
         id13 = self.estetyka.get()
+
         id14 = self.dokr_pas.get()
         id15 = self.kmpl_dost.get()
         id16 = self.uwagi_txt.get(1.0, END)
