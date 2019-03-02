@@ -55,7 +55,7 @@ class Application(Frame):
         self.estet_sil_rysy(State)                       #7
         self.kapturki_srub_zn_uziem(State)               #8
         self.izolacja_uszczelki(State)                   #9
-        self.filtry                                     #10
+        self.filtry(State)                              #10
         self.taca_ociekowa(State)                       #11
         self.bypass_montaz_dzialanie(State)             #12
         self.wentylatory_montaz_dzialanie(State)        #13
@@ -471,7 +471,7 @@ class Application(Frame):
 
         self.mon_filtr = StringVar()
 
-        self.mon_filtr(State[0][11])
+        self.mon_filtr.set(State[0][11])
 
 
         Radiobutton(self,
@@ -577,7 +577,7 @@ class Application(Frame):
 
         self.went = StringVar()
 
-        self.went=(State[0][14])
+        self.went.set(State[0][14])
 
 
         Radiobutton(self,
@@ -1023,7 +1023,7 @@ class Application(Frame):
         contens1 = str(self.ent_nr_fab.get())
         contens2 = str(self.ent_kod_prod.get())
         contens3 = str(self.ent_nr_zlec.get())
-        id1 = self.identity.get()
+        id1 = self.ident_tab_znam.get()
         id2 = self.tab_znam_nakl.get()
         id3 = self.kla_en_oz_kr.get()
         id4 = self.zasl_raczki.get()
