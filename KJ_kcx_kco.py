@@ -191,7 +191,7 @@ class Application(Frame):
             Time_txt=""
         else:
             var2.set(State[0][3])
-            Time_txt=str(State[0][22])+' '+str(State[0][23])
+            Time_txt=str(State[0][27])+' '+str(State[0][28])
 
 
 
@@ -963,7 +963,7 @@ class Application(Frame):
 
         var3=StringVar() # zmienna pomocnicza - ukrywanie wywswl - zera
         var3=State [0][25]
-        self.uwagi_txt = Text(self, width = 65, height = 3, wrap=WORD )
+        self.uwagi_txt = Text(self, width = 65, height = 2, wrap=WORD )
         self.uwagi_txt.grid(row = 24, column = 1, columnspan = 10 , sticky =W)
 
         if State[0][1]==0 :
