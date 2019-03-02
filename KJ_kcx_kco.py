@@ -64,15 +64,14 @@ class Application(Frame):
         self.nagrz_elektr_mont_dział_alarm(State)       #16
         self.drzwi_zamki_mont_oznacz(State)             #17
         self.wydatek(State)                             #18
-        self.nieszczelnosc(State)
-
-        self.oslona_rozdzielnicy(State)                 #19
-        self.dtr_ka_karta_prod_kpl_dost(State)          #20
-        self.oznaczenie_KJ(State)                       #21
-        self.uwagi(State)                               #22
-        self.okno_uwagi(State)                          #23
-        self.podpis_kontrolera(State)                   #25
-        self.btn_akcept()                               #25
+        self.nieszczelnosc(State)                       #29
+        self.oslona_rozdzielnicy(State)                 #20
+        self.dtr_ka_karta_prod_kpl_dost(State)          #21
+        self.oznaczenie_KJ(State)                       #22
+        self.uwagi(State)                               #23
+        self.okno_uwagi(State)                          #24
+        self.podpis_kontrolera(State)                   #26
+        self.btn_akcept()                               #26
 
 
 
@@ -1082,8 +1081,9 @@ class Application(Frame):
 
         cur.execute(
             """
-            SELECT ID,nr_fabr,kod_prod, nr_zlec,identyfikacja,filtry_uszczelki,szczel_wymien,prowadz_przew_kon, mon_NW, mon_roz,\
-            dzial_went,mon_czujn,dzial_NW,ustaw_ster, kontr_metrel,kontr_ozn, estetyka, kontr_pas, kmpl_dost, uwagi, uwagi_bool, podpis, now_d, now_h FROM tab
+            SELECT ID,nr_fabr,kod_prod, nr_zlec,identity,tab_znam_nakl,kla_en_oz_kr,zasl_raczki,est_silik_rysy,kapt_srub_uziem,\
+            izol_uszcz,mon_filtr,tac_ociek,mon_bypas,went,czujn_temp,rozdz_mont,nagrz_dzial,drzwi,ent_wydatek,ent_nieszczel,\
+            osl_rozdz,dtr_kart_prod,ozn_KJ,uwagi_bool,uwagi_txt,podpis,now_d,now_h FROM tab
 
             """)
         State_Train = cur.fetchall()
@@ -1094,9 +1094,6 @@ class Application(Frame):
 
         app1 = Application(root,State,self.n)
         return State,app1,n
-
-
-
 
 
 
