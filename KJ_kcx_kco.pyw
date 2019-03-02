@@ -6,6 +6,8 @@ from tkinter import *
 import tkinter.ttk as ttk
 import datetime
 from tkinter import messagebox
+import os
+import sys
 
 # git
 # utworzenie połączenia z bazą przechowywaną na dysku
@@ -38,6 +40,7 @@ n=-1  #zmienna odpow. za poruszanie po bazie
 
 # Klasa okna glownego
 class Application(Frame):
+
 
     def __init__(self,master,State,n):
         """Inicjuję ramkę"""
@@ -1069,9 +1072,9 @@ class Application(Frame):
         self.arch(n)
 
 
+#########################################################################################################################################################################################
 
 
-########################################################################################################################################################################################
 
     # funkcja przycisku archiwizacja - THE END
     def arch (self,n):
@@ -1091,10 +1094,15 @@ class Application(Frame):
 
         self.grid_remove()
 
-        app1 = Application(root,State,self.n)
-        return State,app1,n
+        try:
+             app1 = Application(root,State,self.n)
+             return State,app1,n
+        except:
 
+            messagebox.showinfo("Zapis danych", "Poza zakresem")
 
+            python = sys.executable
+            os.execl(python, python, * sys.argv)
 
 
 # czesc glowna
