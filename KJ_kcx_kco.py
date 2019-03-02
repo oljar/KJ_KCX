@@ -63,7 +63,9 @@ class Application(Frame):
         self.montaz_rozdzielnicy (State)                #15
         self.nagrz_elektr_mont_dział_alarm(State)       #16
         self.drzwi_zamki_mont_oznacz(State)             #17
-        self.wydatek_szczelnosc(State)                  #18
+        self.wydatek(State)                             #18
+        self.nieszczelnosc(State)
+
         self.oslona_rozdzielnicy(State)                 #19
         self.dtr_ka_karta_prod_kpl_dost(State)          #20
         self.oznaczenie_KJ(State)                       #21
@@ -576,7 +578,7 @@ class Application(Frame):
 
         self.went = StringVar()
 
-        self.went(State[0][14])
+        self.went=(State[0][14])
 
 
         Radiobutton(self,
@@ -645,20 +647,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Montaż rozdzielnicy")
         self.lbl_czynnosc.grid(row = 15, column = 1,sticky = W )
 
-        self.kontr_metrel = StringVar()
+        self.rozdz_mont = StringVar()
 
-        self.kontr_metrel.set(State[0][14])
+        self.rozdz_mont.set(State[0][14])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.kontr_metrel,
+                    variable = self.rozdz_mont,
                     value = "Pozytyw",
                     ).grid(row = 15, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.kontr_metrel,
+                    variable = self.rozdz_mont,
                     value = "Negatyw",
                     ).grid(row = 15, column = 4,sticky=E)
 
@@ -684,20 +686,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Nagrzewnica- montaż, działenie, alarm " )
         self.lbl_czynnosc.grid(row = 16, column = 1,sticky = W )
 
-        self.kontr_metrel = StringVar()
+        self.nagrz_dzial = StringVar()
 
-        self.kontr_metrel.set(State[0][17])
+        self.nagrz_dzial.set(State[0][17])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.kontr_metrel,
+                    variable = self.nagrz_dzial,
                     value = "Pozytyw",
                     ).grid(row = 16, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.kontr_metrel,
+                    variable = self.nagrz_dzial,
                     value = "Negatyw",
                     ).grid(row = 16, column = 4,sticky=E)
 
@@ -719,20 +721,20 @@ class Application(Frame):
         self.lbl_czynnosc = Label(self, text ="Drzwi, zamki, montaz, oznaczenia, rączki" )
         self.lbl_czynnosc.grid(row = 17, column = 1,sticky = W )
 
-        self.kontr_ozn = StringVar()
+        self.drzwi = StringVar()
 
-        self.kontr_ozn.set(State[0][15])
+        self.drzwi.set(State[0][18])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.kontr_ozn,
+                    variable = self.drzwi,
                     value = "Pozytyw",
                     ).grid(row = 17, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.kontr_ozn,
+                    variable = self.drzwi,
                     value = "Negatyw",
                     ).grid(row = 17, column = 4,sticky=E)
 
@@ -745,72 +747,106 @@ class Application(Frame):
 
 
 
+######################################################################################################################################################################################
+
+
+    def wydatek(self,State):
+
+        # utworz etykiete z zapytniem o wydatek
+        self.lbl_dist_0=Label(self)
+        self.lbl_dist_0.grid(row = 18, column = 0 , padx=6)                       #dystans col 0
+
+        self.lbl_nr_fab = Label(self, text ="Podaj wydatek [m/s]")
+        self.lbl_nr_fab.grid(row = 18, column = 1 , sticky = W )
+
+        self.lbl_dist_2=Label(self)
+        self.lbl_dist_2.grid(row = 18, column = 2 , padx=5)                               #dystans  col  2
+
+        self.lbl_dist_3=Label(self)
+        self.lbl_dist_3.grid(row = 18, column = 3 , padx=1)                               #dystans   col 3
+
+
+
+        # utworz widzet Entry do przyjecia nr_fab
+
+        var1=StringVar()    # zmienna pomocnicza - ukrywanie wywswl - zera
+
+        if State[0][1]==0 :
+            var1.set("")
+        else:
+            var1.set(State[0][19])
+
+
+        self.ent_wydatek= Entry(self,textvariable=var1)
+        self.ent_wydatek.grid(row=18, column = 4)
+
+
 #######################################################################################################################################################################################
 
+    def nieszczelnosc(self,State):
 
-    def wydatek_szczelnosc  (self,State):
+        # utworz etykiete z zapytniem o nr nieszczelnosc
+        self.lbl_dist_0=Label(self)
+        self.lbl_dist_0.grid(row = 19, column = 0 , padx=6)                              #dystans col 0
 
-        self.lbl_czynnosc = Label(self, text ="Wydatek i szczelność" )
-        self.lbl_czynnosc.grid(row = 18, column = 1,sticky = W )
+        self.lbl_nr_fab = Label(self, text ="Podaj nieszczelność [m/s]")
+        self.lbl_nr_fab.grid(row = 19, column = 1 , sticky = W )
 
-        self.estetyka = StringVar()
+        self.lbl_dist_2=Label(self)
+        self.lbl_dist_2.grid(row = 19, column = 2 , padx=5)                               #dystans  col  2
 
-        self.estetyka.set(State[0][19])
-
-
-        Radiobutton(self,
-                    text =  "Tak",
-                    variable = self.estetyka,
-                    value = "Pozytyw",
-                    ).grid(row = 18, column = 4,sticky=W)
-
-        Radiobutton(self,
-                    text =  "Nie",
-                    variable = self.estetyka,
-                    value = "Negatyw",
-                    ).grid(row = 18, column = 4,sticky=E)
+        self.lbl_dist_3=Label(self)
+        self.lbl_dist_3.grid(row = 19, column = 3 , padx=1)                               #dystans   col 3
 
 
-# Wyswietlanie stanu  z bazy
 
-        if  State[0][1]!=0 :
-            self.lbl_czynnosc_info = Label(self,text=State[0][19])
-            self.lbl_czynnosc_info.grid(row = 18, column = 7)
+        # utworz widzet Entry do przyjecia niesczelnosci
+
+        var1=StringVar()    # zmienna pomocnicza - ukrywanie wywswl - zera
+
+        if State[0][1]==0 :
+            var1.set("")
+        else:
+            var1.set(State[0][20])
 
 
-#######################################################################################################################################################################################
+        self.ent_nieszczel= Entry(self,textvariable=var1)
+        self.ent_nieszczel.grid(row=19, column = 4)
 
+
+
+###############################################################################################################################################################################
 
 
     def oslona_rozdzielnicy  (self,State):
 
 
         self.lbl_czynnosc = Label(self, text ="Osłona rozdzielnicy z zn. ostrzgawczym" )
-        self.lbl_czynnosc.grid(row = 19, column = 1,sticky = W )
+        self.lbl_czynnosc.grid(row = 20, column = 1,sticky = W )
 
-        self.estetyka = StringVar()
+        self.osl_rozdz = StringVar()
 
-        self.estetyka.set(State[0][20])
+        self.osl_rozdz.set(State[0][21])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.estetyka,
+                    variable = self.osl_rozdz,
                     value = "Pozytyw",
-                    ).grid(row = 19, column = 4,sticky=W)
+                    ).grid(row = 20, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.estetyka,
+                    variable = self.osl_rozdz,
                     value = "Negatyw",
-                    ).grid(row = 19, column = 4,sticky=E)
+                    ).grid(row = 20, column = 4,sticky=E)
 
 
 # Wyswietlanie stanu  z bazy
 
         if  State[0][1]!=0 :
-            self.lbl_czynnosc_info = Label(self,text=State[0][20])
-            self.lbl_czynnosc_info.grid(row = 19, column = 7)
+            self.lbl_czynnosc_info = Label(self,text=State[0][21])
+            self.lbl_czynnosc_info.grid(row = 20, column = 7)
 
 
 
@@ -824,32 +860,32 @@ class Application(Frame):
 
 
         self.lbl_czynnosc = Label(self, text ="DTR-ka, karta prod-u, kompl. dostawy" )
-        self.lbl_czynnosc.grid(row = 20, column = 1,sticky = W )
+        self.lbl_czynnosc.grid(row = 21, column = 1,sticky = W )
 
-        self.dokr_pas = StringVar()
+        self.dtr_kart_prod = StringVar()
 
-        self.dokr_pas.set(State[0][21])
+        self.dtr_kart_prod.set(State[0][22])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.dokr_pas,
+                    variable = self.dtr_kart_prod,
                     value = "Pozytyw",
-                    ).grid(row = 20, column = 4,sticky=W)
+                    ).grid(row = 21, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.dokr_pas,
+                    variable = self.dtr_kart_prod,
                     value = "Negatyw",
-                    ).grid(row = 20, column = 4,sticky=E)
+                    ).grid(row = 21, column = 4,sticky=E)
 
 
 # Wyswietlanie stanu  z bazy
 
         if  State[0][1]!=0 :
-            self.lbl_czynnosc_info = Label(self,text=State[0][21])
-            self.lbl_czynnosc_info.grid(row = 20, column = 7)
-                                             #dystans col  9
+            self.lbl_czynnosc_info = Label(self,text=State[0][22])
+            self.lbl_czynnosc_info.grid(row = 21, column = 7)
+
 
 
 
@@ -860,32 +896,32 @@ class Application(Frame):
 
 
         self.lbl_czynnosc = Label(self, text ="Oznaczene KJ" )
-        self.lbl_czynnosc.grid(row = 21, column = 1,sticky = W )
+        self.lbl_czynnosc.grid(row = 22, column = 1,sticky = W )
 
-        self.dokr_pas = StringVar()
+        self.ozn_KJ = StringVar()
 
-        self.dokr_pas.set(State[0][22])
+        self.ozn_KJ.set(State[0][23])
 
 
         Radiobutton(self,
                     text =  "Tak",
-                    variable = self.dokr_pas,
+                    variable = self.ozn_KJ,
                     value = "Pozytyw",
-                    ).grid(row = 21, column = 4,sticky=W)
+                    ).grid(row = 22, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
-                    variable = self.dokr_pas,
+                    variable = self.ozn_KJ,
                     value = "Negatyw",
-                    ).grid(row = 21, column = 4,sticky=E)
+                    ).grid(row = 22, column = 4,sticky=E)
 
 
 # Wyswietlanie stanu  z bazy
 
         if  State[0][1]!=0 :
-            self.lbl_czynnosc_info = Label(self,text=State[0][22])
-            self.lbl_czynnosc_info.grid(row = 21, column = 7)
-                                             #dystans col  9
+            self.lbl_czynnosc_info = Label(self,text=State[0][23])
+            self.lbl_czynnosc_info.grid(row = 22, column = 7)
+
 
 
 
@@ -894,31 +930,31 @@ class Application(Frame):
     def uwagi(self,State):
 
         self.lbl_czynnosc = Label(self,text ="Uwagi")
-        self.lbl_czynnosc.grid(row = 22, column = 1 , sticky =W)  # dystans
+        self.lbl_czynnosc.grid(row = 23, column = 1 , sticky =W)  # dystans
 
 
         self.uwagi_bool = StringVar()
-        self.uwagi_bool.set(State[0][23])
+        self.uwagi_bool.set(State[0][24])
 
 
         Radiobutton(self,
                     text =  "Tak",
                     variable = self.uwagi_bool,
                     value = "Pozytyw",
-                    ).grid(row = 22, column = 4,sticky=W)
+                    ).grid(row = 23, column = 4,sticky=W)
 
         Radiobutton(self,
                     text =  "Nie",
                     variable = self.uwagi_bool,
                     value = "Negatyw",
-                    ).grid(row = 22, column = 4,sticky=E)
+                    ).grid(row = 23, column = 4,sticky=E)
 
 # Wyswietlanie stanu  z bazy
 
 
         if  State[0][1]!=0 :
-            self.lbl_czynnosc_info = Label(self,text=State[0][23])
-            self.lbl_czynnosc_info.grid(row = 22, column = 7)
+            self.lbl_czynnosc_info = Label(self,text=State[0][24])
+            self.lbl_czynnosc_info.grid(row = 23, column = 7)
 
 
 #######################################################################################################################################################################################
@@ -927,9 +963,9 @@ class Application(Frame):
     def okno_uwagi(self,State):
 
         var3=StringVar() # zmienna pomocnicza - ukrywanie wywswl - zera
-        var3=State [0][24]
-        self.uwagi_txt = Text(self, width = 47, height = 5, wrap=WORD )
-        self.uwagi_txt.grid(row = 23, column = 1, columnspan = 6 , sticky =W)
+        var3=State [0][25]
+        self.uwagi_txt = Text(self, width = 65, height = 3, wrap=WORD )
+        self.uwagi_txt.grid(row = 24, column = 1, columnspan = 10 , sticky =W)
 
         if State[0][1]==0 :
             self.uwagi_txt.insert(END," ")
@@ -941,7 +977,7 @@ class Application(Frame):
 #dystans
 
         self.lbl_dist_10=Label(self)
-        self.lbl_dist_10.grid(row = 24, column = 1)
+        self.lbl_dist_10.grid(row = 25, column = 1)
 
 
 ####################################################################################################################################################################################
@@ -949,10 +985,10 @@ class Application(Frame):
     def podpis_kontrolera(self,State):
         self.podpis = StringVar()
         self.combobox = ttk.Combobox(self, textvariable = self.podpis)
-        self.combobox.grid(row = 25, column = 3, columnspan = 2 , sticky =W)
+        self.combobox.grid(row = 26, column = 3, columnspan = 2 , sticky =W)
         self.combobox['values'] = ('','Jarosław Olszewski', 'Piotr Tylak')
         self.combobox.current(0)
-        a=State[0][25]
+        a=State[0][26]
         if a=='Jarosław Olszewski':
             self.combobox.current(1)
         if a=='Piotr Tylak':
@@ -965,16 +1001,12 @@ class Application(Frame):
 ######################################################################################################################################################################################
 
 
-
-
-
-
     #poziom lini przycisk akceptuj
 
     def btn_akcept(self):
         #utworz przycisk - akceptuj- poziom
         self.submit_bttn = Button(self, text ="Akceptuj", command = self.ostrzezenie_zapis)
-        self.submit_bttn.grid(row = 25, column = 1)
+        self.submit_bttn.grid(row = 26, column = 1)
 
 
     def ostrzezenie_zapis(self):
@@ -1003,21 +1035,22 @@ class Application(Frame):
         id9 = self.tac_ociek.get()
         id10 = self.mon_bypas.get()
         id11 = self.went.get()
-
         id12 = self.czujn_temp.get()
-        id13 = self.estetyka.get()
-
-        id14 = self.dokr_pas.get()
-        id15 = self.kmpl_dost.get()
-        id16 = self.uwagi_txt.get(1.0, END)
-        id17 = self.uwagi_bool.get()
-        id18 = self.podpis.get()
-        id19 = now_d
-        id20 = now_h
-       # messagebox.showinfo("Check window", contens1+";"+contens2+";"+ contens3+";"+id1+";"+id2+";"+id3\
-       # +";" + id4+";"+id5+";"+id6+";"+id7+";"+id8+";"+id9+";"+id10+";"+id11+";"+id12+";"+id13+";"+id14+";"+id15+"")
-        cur.execute('INSERT INTO tab VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',(contens1,contens2,contens3,\
-        id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14,id15,id16,id17,id18,id19,id20))
+        id13 = self.rozdz_mont.get()
+        id14 = self.nagrz_dzial.get()
+        id15 = self.drzwi.get()
+        id16 = self.ent_wydatek.get()
+        id17 = self.ent_nieszczel.get()
+        id18 = self.osl_rozdz.get()
+        id19 = self.dtr_kart_prod.get()
+        id20 = self.ozn_KJ.get()
+        id21 = self.uwagi_bool.get()
+        id22 = self.uwagi_txt.get(1.0, END)
+        id23 = self.podpis.get()
+        id24 = now_d
+        id25 = now_h
+        cur.execute('INSERT INTO tab VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',(contens1,contens2,contens3,\
+        id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14,id15,id16,id17,id18,id19,id20,id21,id22,id23,id24,id25))
 
         messagebox.showinfo("Zapis danych", "Zapisano")
         con.commit()
