@@ -20,7 +20,6 @@ cur = con.cursor()
 
 
 
-
 # lista zagnieżdzona przekazywania stanow kontrolek
 l=200     #parametry listy-ilosc zagniezdzen
 x=200    #parametry listy- ilosc zmiennych(str) w zagniezdzeniu
