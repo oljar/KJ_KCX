@@ -1179,6 +1179,8 @@ class Application(Frame):
         self.pt_id24 = now_d
         self.pt_id25 = now_h
 
+
+
         pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
 
         doc = SimpleDocTemplate("__file__"+"../../listy_kontrolne/"+self.pt_contens1+"_lista_kontr_KCX.pdf", pagesize=A4 )
