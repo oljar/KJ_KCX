@@ -125,7 +125,7 @@ class Application(Frame):
 
 
         self.ent_nr_fab= Entry(self,textvariable=var1)
-        self.ent_nr_fab.grid(row=0, column = 4)
+        self.ent_nr_fab.grid(row=0, column = 4, ipadx=10 )
 
         self.lbl_dist_5=Label(self)
         self.lbl_dist_5.grid(row = 0, column = 5 , padx=4)                               #dystans col  5
@@ -257,7 +257,7 @@ class Application(Frame):
 
 
         self.ent_nr_zlec= Entry(self,textvariable=var2)
-        self.ent_nr_zlec.grid(row=2, column = 4)
+        self.ent_nr_zlec.grid(row=2, column = 4, ipadx=10)
 
         self.lbl_dist_10=Label(self)
         self.lbl_dist_10.grid(row = 2, column = 5 , pady=3)
@@ -1174,11 +1174,7 @@ class Application(Frame):
         self.pt_id24 = now_d
         self.pt_id25 = now_h
 
-
-
         pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
-
-
 
         doc = SimpleDocTemplate("simple_table_grid1.pdf", pagesize=A4 )
 
@@ -1186,8 +1182,27 @@ class Application(Frame):
 
         style = styleSheet['BodyText']
 
-
         elements = []
+
+
+
+        #graniczne przecieki
+
+        leak_bool='Negatyw'
+        if self.pt_contens2=='KCX-300' and float(self.pt_id17)<0.3:
+            leak_bool='Pozytyw'
+        if self.pt_contens2=='KCX-500' and float(self.pt_id17)<0.4:
+            leak_bool='Pozytyw'
+        if self.pt_contens2=='KCX-800' and float(self.pt_id17)<0.5:
+            leak_bool='Pozytyw'
+        if self.pt_contens2=='KCX-1200' and float(self.pt_id17)<0.3:
+            leak_bool='Pozytyw'
+
+
+
+
+
+
 
         data= [['Logo','','Montaż aparatów KCX            ZP3 SKOWARCZ' ],
                ['','','Lista kontrolna czynnoŚci sprawdzających KCX'],
@@ -1208,14 +1223,14 @@ class Application(Frame):
                ['', '', '2.5', 'Nagrzewnica-montaż-działanie-alarm', self.pt_id14],
                ['', '', '2.6', 'Drzwi-zamki-mntaż-oznacznia-rączki', self.pt_id15],
                ['', '', '2.7', 'Wydatek'+' '+ self.pt_id16+' '+'[m/s]',''],
-               ['', '', '2.8', 'Szczelność'+' '+ self.pt_id17+' '+'[m/s]',''],
+               ['', '', '2.8', 'Szczelność'+' '+ self.pt_id17+' '+'[m/s]',leak_bool],
                ['3', 'Kompletacja', '3.1', 'Osłona rozdzielnicy-znak ostrzegawczy' , self.pt_id18],
                ['', '', '3.2', 'DTRka, karta produktu' , self.pt_id19],
                ['', '', '3.3', 'Oznaczenie KJ' , self.pt_id20],
                ['4', 'Uwagi', self.pt_id22, '', self.pt_id21],
-               ['5', 'Nr zlecenia', str(self.ent_nr_zlec.get()), '' , ''],
-               ['',  'Nr seryjny', str(self.ent_nr_fab.get()), '' , ''],
-               ['',  'Typ urządzenia',str(self.ent_kod_prod.get()), '' , ''],
+               ['5', 'Nr zlecenia', str(self.pt_contens3), '' , ''],
+               ['',  'Nr seryjny', str(self.pt_contens1), '' , ''],
+               ['',  'Typ urządzenia',str(self.pt_contens2), '' , ''],
                ['',  'Data badania KJ', self.pt_id24+' '+self.pt_id25, '' , ''],
                ['',  'Kontroler KJ', self.pt_id23, '' , ''],
                ['6',  'Ocena końcowa', '', '' , ''],
