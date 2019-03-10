@@ -8,6 +8,15 @@ import datetime
 from tkinter import messagebox
 import os
 import sys
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4, inch
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle,Paragraph
+#from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.styles import getSampleStyleSheet
+
+
 
 # git
 # utworzenie połączenia z bazą przechowywaną na dysku
@@ -74,6 +83,7 @@ class Application(Frame):
         self.okno_uwagi(State)                          #24
         self.podpis_kontrolera(State)                   #26
         self.btn_akcept()                               #26
+        self.btn_drukuj()
 
 
 
@@ -1014,6 +1024,10 @@ class Application(Frame):
         if messagebox.askyesno("Zapis danych", "Czy zapisać dane ?"):
             self.akcept()
 
+    def btn_drukuj(self):
+        self.submit_bttn = Button(self, text ="Drukuj")
+        self.submit_bttn.grid(row = 26, column = 7)
+        self.control_list(State)
 
 
     # funkcja przycisku akeptuj
@@ -1073,8 +1087,165 @@ class Application(Frame):
 
 
 #########################################################################################################################################################################################
+#  wydruk PDF
+
+    def control_list(self,State):
+
+      #  deklaracja zmiennych
+
+        dt = datetime.datetime.now()
+        now_d = dt.strftime("%d-%m-%Y")
+        now_h = dt.strftime("%H:%M")
+        self.pt_contens1 = str(self.ent_nr_fab.get())
+        self.pt_contens2 = str(self.ent_kod_prod.get())
+        self.pt_contens3 = str(self.ent_nr_zlec.get())
+        self.pt_id1 = self.ident_tab_znam.get()
+        self.pt_id2 = self.tab_znam_nakl.get()
+        self.pt_id3 = self.kla_en_oz_kr.get()
+        self.pt_id4 = self.zasl_raczki.get()
+        self.pt_id5 = self.est_silik_rysy.get()
+        self.pt_id6 = self.kapt_srub_uziem.get()
+        self.pt_id7 = self.izol_uszcz.get()
+        self.pt_id8 = self.mon_filtr.get()
+        self.pt_id9 = self.tac_ociek.get()
+        self.pt_id10 = self.mon_bypas.get()
+        self.pt_id11 = self.went.get()
+        self.pt_id12 = self.czujn_temp.get()
+        self.pt_id13 = self.rozdz_mont.get()
+        self.pt_id14 = self.nagrz_dzial.get()
+        self.pt_id15 = self.drzwi.get()
+        self.pt_id16 = self.ent_wydatek.get()
+        self.pt_id17 = self.ent_nieszczel.get()
+        self.pt_id18 = self.osl_rozdz.get()
+        self.pt_id19 = self.dtr_kart_prod.get()
+        self.pt_id20 = self.ozn_KJ.get()
+        self.pt_id21 = self.uwagi_bool.get()
+        self.pt_id22 = self.uwagi_txt.get(1.0, END)
+        self.pt_id23 = self.podpis.get()
+        self.pt_id24 = now_d
+        self.pt_id25 = now_h
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
+
+
+
+        doc = SimpleDocTemplate("simple_table_grid1.pdf", pagesize=A4 )
+
+        styleSheet = getSampleStyleSheet()
+
+        style = styleSheet['BodyText']
+
+
+        elements = []
+
+        data= [['Logo','','Montaż aparatów KCX            ZP3 SKOWARCZ' ],
+               ['','','Lista kontrolna czynnoŚci sprawdzających KCX'],
+               ['Lp', 'Operacja', 'Lp', 'Wytyczne', 'Ocena'],
+               ['1', 'Kontrola wizualna', '1.1', 'Identyfikacja, naklejka z nr. fab ',self.pt_id1],
+               ['' , '', '1.2', 'Tab. znaminowa, inne nalepki', self.pt_id2],
+               ['', '' , '1.3', 'Tab. klasa energetyczna, ozn króćów', self.pt_id3],
+               ['', '', '1.4', 'Zaślepki srub, rączki', self.pt_id4],
+               ['', '', '1.5', 'Estetyka, silikonowanie, rysy ', self.pt_id5],
+               ['', '', '1.6', 'Kapturki srub NW, znaczki uziemień', self.pt_id6],
+               ['', '', '1.7', 'Izolacja, uszczelki', self.pt_id7],
+               ['', '', '1.8', 'Filtry', self.pt_id8],
+               ['', '', '1.9', 'Wanna-szczelność-silikon-malowanie', self.pt_id9],
+               ['2', 'Próby ruchowe', '2.1', 'Bypass-montaż-działanie-szczelność', self.pt_id10],
+               ['', '', '2.2', 'Wentylatory-montaż-działanie', self.pt_id11],
+               ['', '', '2.3', 'Czujniki temperatur-montaż-działanie', self.pt_id12],
+               ['', '', '2.4', 'Montaż rozdzielnicy-wpięcie płytki ', self.pt_id13],
+               ['', '', '2.5', 'Nagrzewnica-montaż-działanie-alarm', self.pt_id14],
+               ['', '', '2.6', 'Drzwi-zamki-mntaż-oznacznia-rączki', self.pt_id15],
+               ['', '', '2.7', 'Wydatek'+' '+ self.pt_id16+' '+'[m/s]',''],
+               ['', '', '2.8', 'Szczelność'+' '+ self.pt_id17+' '+'[m/s]',''],
+               ['3', 'Kompletacja', '3.1', 'Osłona rozdzielnicy-znak ostrzegawczy' , self.pt_id18],
+               ['', '', '3.2', 'DTRka, karta produktu' , self.pt_id19],
+               ['', '', '3.3', 'Oznaczenie KJ' , self.pt_id20],
+               ['4', 'Uwagi', self.pt_id22, '', self.pt_id21],
+               ['5', 'Nr zlecenia', str(self.ent_nr_zlec.get()), '' , ''],
+               ['',  'Nr seryjny', str(self.ent_nr_fab.get()), '' , ''],
+               ['',  'Typ urządzenia',str(self.ent_kod_prod.get()), '' , ''],
+               ['',  'Data badania KJ', self.pt_id24+' '+self.pt_id25, '' , ''],
+               ['',  'Kontroler KJ', self.pt_id23, '' , ''],
+               ['6',  'Ocena końcowa', '', '' , ''],
+
+
+               ]
+
+
+
+        t=Table(data,4*[1.3*inch], 30*[0.3*inch])
+        t.setStyle(TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
+
+                               #('VALIGN',(0,0),(0,-1),'TOP'),
+                               #('TEXTCOLOR',(0,0),(0,-1),colors.blue),
+                               ('ALIGN',(0,0),(-1,-1),'CENTER'),
+                               ('VALIGN',(0,0),(-1,-1),'MIDDLE'),
+                               #('TEXTCOLOR',(0,-1),(-1,-1),colors.green),
+                               ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+                               ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                               ('SPAN',(3,0),(4,0)),
+                               ('SPAN',(2,1),(4,1)),
+                               ('SPAN',(2,0),(4,0)),
+                               ('SPAN',(0,0),(1,1)),
+                               ('SPAN',(0,3),(0,11)),#
+                               ('SPAN',(1,3),(1,11)),#
+                               ('SPAN',(0,12),(0,19)),#
+                               ('SPAN',(1,12),(1,19)),#
+                               ('SPAN',(0,20),(0,22)),#
+                               ('SPAN',(1,20),(1,22)),#
+                               ('SPAN',(2,23),(3,23)),
+                               ('SPAN',(2,24),(4,24)),
+                               ('SPAN',(0,24),(0,28)),
+                               ('SPAN',(2,25),(4,25)),
+                               ('SPAN',(2,26),(4,26)),
+                               ('SPAN',(2,27),(4,27)),
+                               ('SPAN',(2,28),(4,28)),
+                               ('SPAN',(2,29),(4,29)),
+                               ('SPAN',(2,30),(4,30)),
+                               ('FONT',(0,0),(-1,-1),'DejaMono'),
+                               ('FONTSIZE',(2,1),(2,4),12),
+                               ('FONTSIZE',(2,0),(2,4),10),
+
+                               ]))
+
+        t._argW[0]=0.5*inch
+        t._argW[1] = 1.5*inch
+        t._argW[2] = 0.5*inch
+        t._argW[3] = 3.2*inch
+        t._argW[4] = 1.*inch
+        t._argH[1]=0.4*inch
+        t._argH[23]=0.5*inch
+        t._argH[29]=0.5*inch
+        elements.append(t)
+        # write the document to disk
+        doc.build(elements)
+
+
+
+
+
+
+
+###################################################################################################################################################################################
 
     # funkcja przycisku archiwizacja - THE END
     def arch (self,n):
