@@ -1024,7 +1024,7 @@ class Application(Frame):
 
         var3=StringVar() # zmienna pomocnicza - ukrywanie wywswl - zera
         var3=State [0][25]
-        self.uwagi_txt = Text(self, width = 65, height = 2, wrap=WORD )
+        self.uwagi_txt = Text(self, width = 65, height = 1, wrap=CHAR )
         self.uwagi_txt.grid(row = 24, column = 1, columnspan = 10 , sticky =W)
 
         if State[0][1]==0 :
@@ -1074,9 +1074,13 @@ class Application(Frame):
             self.akcept()
 
     def btn_drukuj(self):
-        self.submit_bttn = Button(self, text ="Drukuj")
-        self.submit_bttn.grid(row = 26, column = 7)
-        self.control_list(State)
+        self.print_bttn = Button(self, text ="Drukuj",command = self.info_druk)
+        self.print_bttn.grid(row = 26, column = 7)
+
+    def info_druk(self):
+        if messagebox.askyesno("Wydruk do PDF", "Czy wydrukować do PDF ?"):
+            self.control_list(State)
+
 
 
     # funkcja przycisku akeptuj
@@ -1169,7 +1173,7 @@ class Application(Frame):
         self.pt_id19 = self.dtr_kart_prod.get()
         self.pt_id20 = self.ozn_KJ.get()
         self.pt_id21 = self.uwagi_bool.get()
-        self.pt_id22 = self.uwagi_txt.get(1.0, END)
+        self.pt_id22 = self.uwagi_txt.get("1.0", END)
         self.pt_id23 = self.podpis.get()
         self.pt_id24 = now_d
         self.pt_id25 = now_h
@@ -1199,6 +1203,15 @@ class Application(Frame):
             leak_bool='Pozytyw'
 
 
+        #ocena sumaryczna
+        self.summary_mark ="Negatyw"
+
+        if self.pt_id1=="Pozytyw" and self.pt_id2=="Pozytyw" and self.pt_id3=="Pozytyw" and self.pt_id4=="Pozytyw" and self.pt_id4=="Pozytyw"\
+        and self.pt_id5=="Pozytyw" and self.pt_id6=="Pozytyw" and self.pt_id7=="Pozytyw" and self.pt_id7=="Pozytyw" and self.pt_id8=="Pozytyw"\
+        and self.pt_id9=="Pozytyw" and self.pt_id10=="Pozytyw" and self.pt_id11=="Pozytyw" and self.pt_id12=="Pozytyw" and self.pt_id13=="Pozytyw" and leak_bool=='Pozytyw'\
+        and self.pt_id14=="Pozytyw" and self.pt_id15=="Pozytyw" and self.pt_id18=="Pozytyw" and self.pt_id19=="Pozytyw" and self.pt_id20=="Pozytyw"and self.pt_id21=="Pozytyw" :
+            self.summary_mark ="Pozytyw"
+
 
 
 
@@ -1227,13 +1240,13 @@ class Application(Frame):
                ['3', 'Kompletacja', '3.1', 'Osłona rozdzielnicy-znak ostrzegawczy' , self.pt_id18],
                ['', '', '3.2', 'DTRka, karta produktu' , self.pt_id19],
                ['', '', '3.3', 'Oznaczenie KJ' , self.pt_id20],
-               ['4', 'Uwagi', self.pt_id22, '', self.pt_id21],
+               ['4', 'Uwagi',self.pt_id22,'', self.pt_id21],
                ['5', 'Nr zlecenia', str(self.pt_contens3), '' , ''],
                ['',  'Nr seryjny', str(self.pt_contens1), '' , ''],
                ['',  'Typ urządzenia',str(self.pt_contens2), '' , ''],
                ['',  'Data badania KJ', self.pt_id24+' '+self.pt_id25, '' , ''],
                ['',  'Kontroler KJ', self.pt_id23, '' , ''],
-               ['6',  'Ocena końcowa', '', '' , ''],
+               ['6',  'Ocena końcowa',self.summary_mark, '' , ''],
 
 
                ]
@@ -1272,6 +1285,7 @@ class Application(Frame):
                                ('FONT',(0,0),(-1,-1),'DejaMono'),
                                ('FONTSIZE',(2,1),(2,4),12),
                                ('FONTSIZE',(2,0),(2,4),10),
+
 
                                ]))
 
