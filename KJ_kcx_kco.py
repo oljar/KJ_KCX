@@ -154,8 +154,26 @@ class Application(Frame):
     def kod_prod(self,State):
 
 
+
         self.czynnosc = Label(self, text ="Podaj kod produktu")
         self.czynnosc.grid(row = 1, column = 1 , sticky = W )
+
+
+        self.typ_ahu = StringVar()
+        self.ent_kod_prod = ttk.Combobox(self, textvariable = self.typ_ahu )
+        self.ent_kod_prod.grid(row = 1, column = 4,   sticky =W)
+        self.ent_kod_prod['values'] = ('','KCX-300', 'KCX-500','KCX-800','KCX-1200')
+        self.ent_kod_prod.current(0)
+        a=State[0][2]
+        if a=='KCX-300':
+            self.ent_kod_prod.current(1)
+        if a=='KCX-500':
+            self.ent_kod_prod.current(2)
+        if a=='KCX-800':
+            self.ent_kod_prod.current(3)
+        if a=='KCX-1200':
+            self.ent_kod_prod.current(4)
+
 
 
 
@@ -168,14 +186,45 @@ class Application(Frame):
             var1.set(State[0][2])
             Time_label_txt ="Ostatnie badanie:"
 
-        self.ent_kod_prod= Entry(self,textvariable=var1)
-        self.ent_kod_prod.grid(row=1, column = 4)
-        self.lbl_dist_9=Label(self)
-        self.lbl_dist_9.grid(row = 1, column = 5,pady=3 )
 
-        # Wyswietlanie komunikatu
+
+
+
+         # Wyswietlanie komunikatu
         self.lbl_t1 = Label(self, text=Time_label_txt)
         self.lbl_t1.grid(row = 1, column =6, columnspan=2)
+
+
+
+
+
+
+
+
+
+
+    #    self.czynnosc = Label(self, text ="Podaj kod produktu")
+    #   self.czynnosc.grid(row = 1, column = 1 , sticky = W )
+
+
+
+    #    var1=StringVar()    # zmienna pomocnicza - ukrywanie wywswl - zera
+
+    #    if State[0][1]==0 :
+    #        var1.set("")
+    #        Time_label_txt=""
+    #    else:
+    #        var1.set(State[0][2])
+    #        Time_label_txt ="Ostatnie badanie:"
+
+    #    self.ent_kod_prod= Entry(self,textvariable=var1)
+    #    self.ent_kod_prod.grid(row=1, column = 4)
+     #  self.lbl_dist_9=Label(self)
+     #   self.lbl_dist_9.grid(row = 1, column = 5,pady=3 )
+
+        # Wyswietlanie komunikatu
+     #   self.lbl_t1 = Label(self, text=Time_label_txt)
+     #   self.lbl_t1.grid(row = 1, column =6, columnspan=2)
 
 
 
@@ -1037,7 +1086,7 @@ class Application(Frame):
         now_d = dt.strftime("%d-%m-%Y")
         now_h = dt.strftime("%H:%M")
         contens1 = str(self.ent_nr_fab.get())
-        contens2 = str(self.ent_kod_prod.get())
+        contens2 = self.typ_ahu.get()
         contens3 = str(self.ent_nr_zlec.get())
         id1 = self.ident_tab_znam.get()
         id2 = self.tab_znam_nakl.get()
@@ -1097,7 +1146,7 @@ class Application(Frame):
         now_d = dt.strftime("%d-%m-%Y")
         now_h = dt.strftime("%H:%M")
         self.pt_contens1 = str(self.ent_nr_fab.get())
-        self.pt_contens2 = str(self.ent_kod_prod.get())
+        self.pt_contens2 = self.typ_ahu.get()
         self.pt_contens3 = str(self.ent_nr_zlec.get())
         self.pt_id1 = self.ident_tab_znam.get()
         self.pt_id2 = self.tab_znam_nakl.get()
@@ -1124,22 +1173,6 @@ class Application(Frame):
         self.pt_id23 = self.podpis.get()
         self.pt_id24 = now_d
         self.pt_id25 = now_h
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
