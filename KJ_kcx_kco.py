@@ -1078,8 +1078,9 @@ class Application(Frame):
         self.print_bttn.grid(row = 26, column = 7)
 
     def info_druk(self):
-        if messagebox.askyesno("Wydruk do PDF", "Czy wydrukować do PDF ?"):
+        if messagebox.askyesno("Wydruk do PDF", "Czy zapisać i wydrukować do PDF ?"):
             self.control_list(State)
+            self.akcept()
 
 
 
@@ -1180,7 +1181,7 @@ class Application(Frame):
 
         pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
 
-        doc = SimpleDocTemplate("simple_table_grid1.pdf", pagesize=A4 )
+        doc = SimpleDocTemplate("__file__"+"../../listy_kontrolne/"+self.pt_contens1+"_lista_kontr_KCX.pdf", pagesize=A4 )
 
         styleSheet = getSampleStyleSheet()
 
