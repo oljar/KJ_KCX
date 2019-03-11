@@ -132,10 +132,10 @@ class Application(Frame):
 
 
 
-        #utworz przyciski 'archiwum'0
+        #utworz przyciski 'archiwum'5
 
         self.btn_up = Button(self,text= "UP", command=self.arch_UP )
-        self.btn_up.grid(row = 0, column=6 , ipadx=20 , sticky=E)
+        self.btn_up.grid(row = 0, column=6 , ipadx=20 , sticky=E,padx=(15,0) )
 
         self.btn_dn = Button(self,text= "DN", command=self.arch_DOWN )
         self.btn_dn.grid(row = 0, column=7 ,ipadx=20, sticky=W)
@@ -764,6 +764,13 @@ class Application(Frame):
                     ).grid(row = 16, column = 4,sticky=E)
 
 
+        Radiobutton(self,
+                    text =  "Brak",
+                    variable = self.nagrz_dzial,
+                    value = "Brak",
+                    ).grid(row = 16, column = 6,sticky=E)
+
+
 # Wyswietlanie stanu  z bazy
 
         if  State[0][1]!=0 :
@@ -1212,7 +1219,8 @@ class Application(Frame):
         if self.pt_id1=="Pozytyw" and self.pt_id2=="Pozytyw" and self.pt_id3=="Pozytyw" and self.pt_id4=="Pozytyw" and self.pt_id4=="Pozytyw"\
         and self.pt_id5=="Pozytyw" and self.pt_id6=="Pozytyw" and self.pt_id7=="Pozytyw" and self.pt_id7=="Pozytyw" and self.pt_id8=="Pozytyw"\
         and self.pt_id9=="Pozytyw" and self.pt_id10=="Pozytyw" and self.pt_id11=="Pozytyw" and self.pt_id12=="Pozytyw" and self.pt_id13=="Pozytyw" and leak_bool=='Pozytyw'\
-        and self.pt_id14=="Pozytyw" and self.pt_id15=="Pozytyw" and self.pt_id18=="Pozytyw" and self.pt_id19=="Pozytyw" and self.pt_id20=="Pozytyw"and self.pt_id21=="Pozytyw" :
+        and self.pt_id14=="Pozytyw" or self.pt_id14=="Brak" and self.pt_id15=="Pozytyw" and self.pt_id18=="Pozytyw" and self.pt_id19=="Pozytyw" and self.pt_id20=="Pozytyw"\
+        and self.pt_id21=="Pozytyw" :
             self.summary_mark ="Pozytyw"
 
 
@@ -1346,7 +1354,7 @@ class Application(Frame):
 
 root = Tk()
 root.title("KJ KCX KCO")
-root.geometry("580x770")
+root.geometry("600x770")
 
 
 
