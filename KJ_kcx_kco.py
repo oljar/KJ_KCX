@@ -1116,7 +1116,17 @@ class Application(Frame):
         id14 = self.nagrz_dzial.get()
         id15 = self.drzwi.get()
         id16 = self.ent_wydatek.get()
+        try:
+            float(self.pt_id16.replace(',', '.'))
+        except:
+            self.warning()
+
         id17 = self.ent_nieszczel.get()
+        try:
+            float(self.pt_id17.replace(',', '.'))
+        except:
+            self.warning ()
+
         id18 = self.osl_rozdz.get()
         id19 = self.dtr_kart_prod.get()
         id20 = self.ozn_KJ.get()
@@ -1176,7 +1186,17 @@ class Application(Frame):
         self.pt_id14 = self.nagrz_dzial.get()
         self.pt_id15 = self.drzwi.get()
         self.pt_id16 = self.ent_wydatek.get()
+        try:
+            float(self.pt_id16.replace(',', '.'))
+        except:
+            self.warning()
+
         self.pt_id17 = self.ent_nieszczel.get()
+        try:
+            float(self.pt_id17.replace(',', '.'))
+        except:
+            self.warning()
+
         self.pt_id18 = self.osl_rozdz.get()
         self.pt_id19 = self.dtr_kart_prod.get()
         self.pt_id20 = self.ozn_KJ.get()
@@ -1314,10 +1334,12 @@ class Application(Frame):
 
 
 
+##################################################################################################################################################################################
 
-
-
-
+    def warning (self):
+        messagebox.showwarning("Warning", "Popraw wpisana liczę")
+        python = sys.executable
+        os.execl(python, python, * sys.argv)
 ###################################################################################################################################################################################
 
     # funkcja przycisku archiwizacja - THE END
