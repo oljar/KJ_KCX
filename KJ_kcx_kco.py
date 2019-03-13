@@ -8,6 +8,7 @@ import datetime
 from tkinter import messagebox
 import os
 import sys
+import PyPDF2
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, inch
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle,Paragraph
@@ -84,7 +85,8 @@ class Application(Frame):
         self.podpis_kontrolera(State)                   #26
         self.btn_akcept()                               #26
         self.btn_drukuj()
-
+        self.filling_factory(State)
+        self.protocol()
 
 
         self.n=n
@@ -1331,7 +1333,171 @@ class Application(Frame):
         elements.append(t)
         # write the document to disk
         doc.build(elements)
+###############################################################################################################################################################################
 
+    def filling_factory(self,State):
+
+
+        pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
+
+        doc = SimpleDocTemplate("__file__"+"../../protokol/filling_protokol_KCX.pdf", pagesize=A4 )
+
+        styleSheet = getSampleStyleSheet()
+
+        style = styleSheet['BodyText']
+
+        elements = []
+
+        kom_NW=0
+
+        if self.nagrz_dzial.get()=="Pozytyw":
+            kom_NW="Sprawdzono w działaniu"
+
+        if self.nagrz_dzial.get()=="Brak":
+            kom_NW="BRAK"
+
+
+        kom_naw=0
+        if self.typ_ahu.get()=='KCX-300':
+            kom_naw=self.ent_wydatek.get()*44
+
+        if self.typ_ahu.get()=='KCX-500':
+            kom_naw=self.ent_wydatek.get()*90
+
+        if self.typ_ahu.get()=='KCX-800':
+            kom_naw=self.ent_wydatek.get()*100
+
+        if self.typ_ahu.get()=='KCX-1200':
+            kom_naw=self.ent_wydatek.get()*176.6
+
+        kom_szczel=""
+        if self.typ_ahu.get()=='KCX-300':
+            kom_szczel=str(self.ent_nieszczel.get() *44)
+
+        if self.typ_ahu.get()=='KCX-500':
+            kom_szczel=self.ent_nieszczel.get() *90
+
+        if self.typ_ahu.get()=='KCX-800':
+            kom_szczel=self.ent_nieszczel.get() *100
+
+        if self.typ_ahu.get()=='KCX-1200':
+            kom_szczel=str(self.ent_wydatek.get()*176.6)
+
+
+
+
+
+
+
+        data= [['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','',self.typ_ahu.get()+" \ "+ str(self.ent_nr_zlec.get()) ,'','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','',str(self.ent_nr_fab.get()),'','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','',kom_NW,'','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','',kom_naw,'','',''],
+               ['','','','','','','','','',''],
+               ['','','','','',str(self.ent_nieszczel.get())+ " [m/s] ;"+ kom_szczel+" [m3/h]",'','','',''],
+               ['','','','','','','','','',''],
+               ['','',self.podpis.get(),'','','','','','data',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ['','','','','','','','','',''],
+               ]
+
+
+
+        t=Table(data,10*[0.7*inch], 60*[0.145*inch])
+        t.setStyle(TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
+
+             ('VALIGN',(0,49),(9,49),'TOP'),
+
+
+                               ]))
+
+
+        elements.append(t)
+        # write the document to disk
+        doc.build(elements)
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################################################################################################################################################################
+
+    def protocol(self):
+
+        row_protocol_KCX = open('__file__"+"../../protokol/raw_protocol_KCX.pdf', 'rb')
+        pdfReader = PyPDF2.PdfFileReader(row_protocol_KCX)
+        row_protocol_KCX_p0 = pdfReader.getPage(0)
+
+        filling_protocol_KCX = (open("__file__"+"../../protokol/filling_protokol_KCX.pdf", 'rb'))
+        pdfFillingReader = PyPDF2.PdfFileReader(filling_protocol_KCX)
+        filling_protocol_KCX_p0 = pdfFillingReader.getPage(0)
+
+        row_protocol_KCX_p0.mergePage(filling_protocol_KCX_p0)
+        pdfWriter=PyPDF2.PdfFileWriter()
+        pdfWriter.addPage(row_protocol_KCX_p0)
+
+        resultPdfFile = open('Protocol_KCX.pdf' , 'wb')
+        pdfWriter.write(resultPdfFile)
+        row_protocol_KCX .close()
+        resultPdfFile.close()
 
 
 ##################################################################################################################################################################################
