@@ -85,8 +85,7 @@ class Application(Frame):
         self.podpis_kontrolera(State)                   #26
         self.btn_akcept()                               #26
         self.btn_drukuj()
-        self.filling_factory(State)
-        self.protocol()
+
 
 
         self.n=n
@@ -1090,6 +1089,7 @@ class Application(Frame):
         if messagebox.askyesno("Wydruk do PDF", "Czy zapisać i wydrukować do PDF ?"):
             self.control_list(State)
             self.akcept()
+            self.filling_factory(State)
 
 
 
@@ -1438,7 +1438,7 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','',str(self.ent_nieszczel.get())+ " [m/s] ;"+ kom_szczel+" [m3/h]",'','','',''],
                ['','','','','','','','','',''],
-               ['','',self.podpis.get(),'','','','','','data',''],
+               ['','','',self.podpis.get(),'','','','','data',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
@@ -1465,6 +1465,7 @@ class Application(Frame):
         elements.append(t)
         # write the document to disk
         doc.build(elements)
+        self.protocol()
 
 
 
