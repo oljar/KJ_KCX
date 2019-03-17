@@ -19,6 +19,8 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 
 
+
+
 # git
 # utworzenie połączenia z bazą przechowywaną na dysku
 # lub w pamięci (':memory:')
@@ -253,15 +255,15 @@ class Application(Frame):
 
         var2=StringVar()    # zmienna pomocnicza - ukrywanie wywswl - zera
         Time_txt=StringVar()
-        t1=(str(State[0][27])+'  '+str(State[0][28]))
+        #t1=(str(State[0][27])+' '+str(State[0][28]))
 
         if State[0][1]==0 :
             var2.set("")
-            t1=(str(now_d)+'  '+str(now_h))
+            t1=(str(now_d)+' '+str(now_h))
             Time_txt.set(t1)
         else:
             var2.set(State[0][3])
-            t1=(str(State[0][27])+'  '+str(State[0][28]))
+            t1=(str(State[0][27])+' '+str(State[0][28]))
             Time_txt.set(t1)
 
 
@@ -1348,12 +1350,21 @@ class Application(Frame):
 
         pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
 
+        styleSheet = getSampleStyleSheet()
+
+        style = styleSheet['BodyText']
+
         doc = SimpleDocTemplate("__file__"+"../../protokol/filling_protokol_KCX.pdf", pagesize=A4 )
 
+
+        pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
 
         styleSheet = getSampleStyleSheet()
 
         style = styleSheet['BodyText']
+
+
+
 
         elements = []
 
@@ -1436,7 +1447,7 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
-               ['','','','',kom_NW,'','','','',''],
+               ['','','','','        '+kom_NW,'','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
@@ -1453,9 +1464,9 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
-               ['','','','','',kom_naw+ ' [m3/h]','','',''],
+               ['','','','','','  '+kom_naw+ '[m3/h]','','',''],
                ['','','','','','','','','',''],
-               ['','','','','',str(self.ent_nieszczel.get())+ " [m/s] ;  "+ kom_szczel+" [m3/h]",'','','',''],
+               ['','','','','','   '+str(self.ent_nieszczel.get())+ "[m/s] "+ kom_szczel+"[m3/h]",'','','',''],
                ['','','','','','','','','',''],
                ['','','',self.podpis.get(),'','','','',czas,''],
                ['','','','','','','','','',''],
@@ -1472,10 +1483,13 @@ class Application(Frame):
 
 
 
-        t=Table(data,10*[0.7*inch], 60*[0.145*inch])
+        t=Table(data,10*[0.7*inch], 60*[0.1445*inch])
         t.setStyle(TableStyle([('ALIGN',(0,0),(-1,-1),'CENTER'),
 
              ('VALIGN',(0,49),(9,49),'TOP'),
+             ('ALIGN',(0,28),(9,28),'CENTER'),
+             ('FONT',(0,0),(-1,-1),'DejaMono')
+
 
 
                                ]))
