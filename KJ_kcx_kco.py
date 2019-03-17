@@ -88,6 +88,7 @@ class Application(Frame):
 
 
 
+
         self.n=n
 
 
@@ -247,14 +248,15 @@ class Application(Frame):
 
 
         var2=StringVar()    # zmienna pomocnicza - ukrywanie wywswl - zera
+        Time_txt=StringVar()
+        t1=(str(State[0][27])+'  '+str(State[0][28]))
 
         if State[0][1]==0 :
             var2.set("")
             Time_txt=""
         else:
             var2.set(State[0][3])
-            Time_txt=str(State[0][27])+' '+str(State[0][28])
-
+            Time_txt.set(t1)
 
 
         self.ent_nr_zlec= Entry(self,textvariable=var2)
@@ -266,7 +268,7 @@ class Application(Frame):
 
 
 
-        self.lbl_t2 = Label(self, text = Time_txt)
+        self.lbl_t2 = Entry(self, text = Time_txt,state=DISABLED)
         self.lbl_t2.grid(row = 2, column =6, columnspan=2)
 
 
@@ -1089,9 +1091,8 @@ class Application(Frame):
     def info_druk(self):
         if messagebox.askyesno("Wydruk do PDF", "Czy zapisać i wydrukować do PDF ?"):
             self.control_list(State)
-            self.akcept()
             self.filling_factory(State)
-
+            self.akcept()
 
 
     # funkcja przycisku akeptuj
@@ -1355,6 +1356,7 @@ class Application(Frame):
 
 
 
+
         if self.nagrz_dzial.get()=="Pozytyw":
             kom_NW="Sprawdzono w działaniu"
 
@@ -1380,7 +1382,8 @@ class Application(Frame):
         if self.typ_ahu.get()=='KCX-1200':
             kom_naw=str(wydatek_liczba*176.6)
 
-        kom_szczel=""
+
+
         if self.typ_ahu.get()=='KCX-300':
             kom_szczel= str(szczelnosc_liczba *44)
 
@@ -1396,8 +1399,7 @@ class Application(Frame):
 
 
 
-
-
+        czas=self.lbl_t2.get()
 
         data= [['','','','','','','','','',''],
                ['','','','','','','','','',''],
@@ -1444,11 +1446,11 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
-               ['','','','','',kom_naw+ " [m3/h]",'','',''],
+               ['','','','','',kom_naw+ ' [m3/h]','','',''],
                ['','','','','','','','','',''],
                ['','','','','',str(self.ent_nieszczel.get())+ " [m/s] ;  "+ kom_szczel+" [m3/h]",'','','',''],
                ['','','','','','','','','',''],
-               ['','','',self.podpis.get(),'','','','','data',''],
+               ['','','',self.podpis.get(),'','','','',czas,''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
