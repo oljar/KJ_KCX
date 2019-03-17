@@ -1051,6 +1051,7 @@ class Application(Frame):
 ####################################################################################################################################################################################
 
     def podpis_kontrolera(self,State):
+
         self.podpis = StringVar()
         self.combobox = ttk.Combobox(self, textvariable = self.podpis)
         self.combobox.grid(row = 26, column = 3, columnspan = 2 , sticky =W)
@@ -1350,38 +1351,47 @@ class Application(Frame):
 
         kom_NW=0
 
+
+
+
+
         if self.nagrz_dzial.get()=="Pozytyw":
             kom_NW="Sprawdzono w działaniu"
 
         if self.nagrz_dzial.get()=="Brak":
             kom_NW="BRAK"
 
+        wydatek_liczba = float(self.ent_wydatek.get())
+
+        szczelnosc_liczba = float(self.ent_nieszczel.get())
+
+
 
         kom_naw=0
         if self.typ_ahu.get()=='KCX-300':
-            kom_naw=self.ent_wydatek.get()*44
+            kom_naw=str(wydatek_liczba*44)
 
         if self.typ_ahu.get()=='KCX-500':
-            kom_naw=self.ent_wydatek.get()*90
+            kom_naw=str(wydatek_liczba*90)
 
         if self.typ_ahu.get()=='KCX-800':
-            kom_naw=self.ent_wydatek.get()*100
+            kom_naw=str(wydatek_liczba*100)
 
         if self.typ_ahu.get()=='KCX-1200':
-            kom_naw=self.ent_wydatek.get()*176.6
+            kom_naw=str(wydatek_liczba*176.6)
 
         kom_szczel=""
         if self.typ_ahu.get()=='KCX-300':
-            kom_szczel=str(self.ent_nieszczel.get() *44)
+            kom_szczel= str(szczelnosc_liczba *44)
 
         if self.typ_ahu.get()=='KCX-500':
-            kom_szczel=self.ent_nieszczel.get() *90
+            kom_szczel=str(szczelnosc_liczba *90)
 
         if self.typ_ahu.get()=='KCX-800':
-            kom_szczel=self.ent_nieszczel.get() *100
+            kom_szczel=str(szczelnosc_liczba *100)
 
         if self.typ_ahu.get()=='KCX-1200':
-            kom_szczel=str(self.ent_wydatek.get()*176.6)
+            kom_szczel=str(szczelnosc_liczba*176.6)
 
 
 
@@ -1434,9 +1444,9 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
-               ['','','','','',kom_naw,'','',''],
+               ['','','','','',kom_naw+ " [m3/h]",'','',''],
                ['','','','','','','','','',''],
-               ['','','','','',str(self.ent_nieszczel.get())+ " [m/s] ;"+ kom_szczel+" [m3/h]",'','','',''],
+               ['','','','','',str(self.ent_nieszczel.get())+ " [m/s] ;  "+ kom_szczel+" [m3/h]",'','','',''],
                ['','','','','','','','','',''],
                ['','','',self.podpis.get(),'','','','','data',''],
                ['','','','','','','','','',''],
