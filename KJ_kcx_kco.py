@@ -243,6 +243,10 @@ class Application(Frame):
         self.czynnosc = Label(self, text ="Podaj nr zlecenia")
         self.czynnosc.grid(row = 2, column = 1 , columnspan = 1, sticky = W )
 
+        dt = datetime.datetime.now()
+        now_d = dt.strftime("%d-%m-%Y")
+        now_h = dt.strftime("%H:%M")
+
 
         # utworz widzet Entry do przyjecia zlecenia
 
@@ -253,9 +257,11 @@ class Application(Frame):
 
         if State[0][1]==0 :
             var2.set("")
-            Time_txt=""
+            t1=(str(now_d)+'  '+str(now_h))
+            Time_txt.set(t1)
         else:
             var2.set(State[0][3])
+            t1=(str(State[0][27])+'  '+str(State[0][28]))
             Time_txt.set(t1)
 
 
@@ -1207,8 +1213,8 @@ class Application(Frame):
         self.pt_id21 = self.uwagi_bool.get()
         self.pt_id22 = self.uwagi_txt.get("1.0", END)
         self.pt_id23 = self.podpis.get()
-        self.pt_id24 = now_d
-        self.pt_id25 = now_h
+        self.pt_time = self.lbl_t2.get()
+
 
 
 
@@ -1279,7 +1285,7 @@ class Application(Frame):
                ['5', 'Nr zlecenia', str(self.pt_contens3), '' , ''],
                ['',  'Nr seryjny', str(self.pt_contens1), '' , ''],
                ['',  'Typ urządzenia',str(self.pt_contens2), '' , ''],
-               ['',  'Data badania KJ', self.pt_id24+' '+self.pt_id25, '' , ''],
+               ['',  'Data badania KJ', self.pt_time, '' , ''],
                ['',  'Kontroler KJ', self.pt_id23, '' , ''],
                ['6',  'Ocena końcowa',self.summary_mark, '' , ''],
 
@@ -1343,6 +1349,7 @@ class Application(Frame):
         pdfmetrics.registerFont(TTFont('DejaMono', 'DejaVuSansMono.ttf'))
 
         doc = SimpleDocTemplate("__file__"+"../../protokol/filling_protokol_KCX.pdf", pagesize=A4 )
+
 
         styleSheet = getSampleStyleSheet()
 
@@ -1507,7 +1514,7 @@ class Application(Frame):
         pdfWriter=PyPDF2.PdfFileWriter()
         pdfWriter.addPage(row_protocol_KCX_p0)
 
-        resultPdfFile = open('Protocol_KCX.pdf' , 'wb')
+        resultPdfFile = open("__file__"+"../../protocols/"+self.pt_contens1+"_protocol_KCX.pdf", 'wb')
         pdfWriter.write(resultPdfFile)
         row_protocol_KCX .close()
         resultPdfFile.close()
