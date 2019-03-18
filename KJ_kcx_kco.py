@@ -1389,30 +1389,30 @@ class Application(Frame):
 
         kom_naw=0
         if self.typ_ahu.get()=='KCX-300':
-            kom_naw=str(wydatek_liczba*44)
+            kom_naw=str(round(wydatek_liczba*44,1))
 
         if self.typ_ahu.get()=='KCX-500':
-            kom_naw=str(wydatek_liczba*90)
+            kom_naw=str(round(wydatek_liczba*72.34,1))
 
         if self.typ_ahu.get()=='KCX-800':
-            kom_naw=str(wydatek_liczba*100)
+            kom_naw=str(round(wydatek_liczba*113.04,1))
 
         if self.typ_ahu.get()=='KCX-1200':
-            kom_naw=str(wydatek_liczba*176.6)
+            kom_naw=str(round(wydatek_liczba*176.6,1))
 
 
 
         if self.typ_ahu.get()=='KCX-300':
-            kom_szczel= str(szczelnosc_liczba *44)
+            kom_szczel= str(round(szczelnosc_liczba *44,2))
 
         if self.typ_ahu.get()=='KCX-500':
-            kom_szczel=str(szczelnosc_liczba *90)
+            kom_szczel=str(round(szczelnosc_liczba *72.34,2))
 
         if self.typ_ahu.get()=='KCX-800':
-            kom_szczel=str(szczelnosc_liczba *100)
+            kom_szczel=str(round(szczelnosc_liczba *113.04,2))
 
         if self.typ_ahu.get()=='KCX-1200':
-            kom_szczel=str(szczelnosc_liczba*176.6)
+            kom_szczel=str(round(szczelnosc_liczba*176.6,2))
 
 
 
@@ -1447,7 +1447,7 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
-               ['','','','','        '+kom_NW,'','','','',''],
+               ['','','','','        '+str(kom_NW),'','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
@@ -1464,9 +1464,9 @@ class Application(Frame):
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
                ['','','','','','','','','',''],
-               ['','','','','','  '+kom_naw+ '[m3/h]','','',''],
+               ['','','','','','  '+str(kom_naw) + '[m3/h]','','',''],
                ['','','','','','','','','',''],
-               ['','','','','','   '+str(self.ent_nieszczel.get())+ "[m/s] "+ kom_szczel+"[m3/h]",'','','',''],
+               ['','','','','','   '+str(self.ent_nieszczel.get())+ "[m/s] "+ str(kom_szczel)+"[m3/h]",'','','',''],
                ['','','','','','','','','',''],
                ['','','',self.podpis.get(),'','','','',czas,''],
                ['','','','','','','','','',''],
