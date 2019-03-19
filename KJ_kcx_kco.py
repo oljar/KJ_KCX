@@ -87,6 +87,7 @@ class Application(Frame):
         self.podpis_kontrolera(State)                   #26
         self.btn_akcept()                               #26
         self.btn_drukuj()
+        self.protocol_perm()
 
 
 
@@ -1096,9 +1097,14 @@ class Application(Frame):
         self.print_bttn = Button(self, text ="Drukuj",command = self.info_druk)
         self.print_bttn.grid(row = 26, column = 7)
 
+
+
     def info_druk(self):
+
         if messagebox.askyesno("Wydruk do PDF", "Czy zapisać i wydrukować do PDF ?"):
             self.control_list(State)
+
+
             self.filling_factory(State)
             self.akcept()
 
@@ -1247,6 +1253,7 @@ class Application(Frame):
 
         #ocena sumaryczna
         self.summary_mark ="Negatyw"
+        self.protocol_permission=False
 
         if self.pt_id1=="Pozytyw" and self.pt_id2=="Pozytyw" and self.pt_id3=="Pozytyw" and self.pt_id4=="Pozytyw" and self.pt_id4=="Pozytyw"\
         and self.pt_id5=="Pozytyw" and self.pt_id6=="Pozytyw" and self.pt_id7=="Pozytyw" and self.pt_id7=="Pozytyw" and self.pt_id8=="Pozytyw"\
@@ -1254,6 +1261,8 @@ class Application(Frame):
         and self.pt_id14=="Pozytyw" or self.pt_id14=="Brak" and self.pt_id15=="Pozytyw" and self.pt_id18=="Pozytyw" and self.pt_id19=="Pozytyw" and self.pt_id20=="Pozytyw"\
         and self.pt_id21=="Pozytyw" :
             self.summary_mark ="Pozytyw"
+            self.protocol_permission=True
+
 
 
 
@@ -1506,32 +1515,39 @@ class Application(Frame):
 
 
 
+##################################################################################################################################################################################
 
+    def protocol_perm(self):
 
-
-
-
+        self.protocol_permission=True
 
 ##################################################################################################################################################################################
 
     def protocol(self):
 
-        row_protocol_KCX = open('__file__"+"../../protokol/raw_protocol_KCX.pdf', 'rb')
-        pdfReader = PyPDF2.PdfFileReader(row_protocol_KCX)
-        row_protocol_KCX_p0 = pdfReader.getPage(0)
+        if self.protocol_permission==True :
 
-        filling_protocol_KCX = (open("__file__"+"../../protokol/filling_protokol_KCX.pdf", 'rb'))
-        pdfFillingReader = PyPDF2.PdfFileReader(filling_protocol_KCX)
-        filling_protocol_KCX_p0 = pdfFillingReader.getPage(0)
+                row_protocol_KCX = open('__file__"+"../../protokol/raw_protocol_KCX.pdf', 'rb')
+                pdfReader = PyPDF2.PdfFileReader(row_protocol_KCX)
+                row_protocol_KCX_p0 = pdfReader.getPage(0)
 
-        row_protocol_KCX_p0.mergePage(filling_protocol_KCX_p0)
-        pdfWriter=PyPDF2.PdfFileWriter()
-        pdfWriter.addPage(row_protocol_KCX_p0)
+                filling_protocol_KCX = (open("__file__"+"../../protokol/filling_protokol_KCX.pdf", 'rb'))
+                pdfFillingReader = PyPDF2.PdfFileReader(filling_protocol_KCX)
+                filling_protocol_KCX_p0 = pdfFillingReader.getPage(0)
 
-        resultPdfFile = open("__file__"+"../../protocols/"+self.pt_contens1+"_protocol_KCX.pdf", 'wb')
-        pdfWriter.write(resultPdfFile)
-        row_protocol_KCX .close()
-        resultPdfFile.close()
+                row_protocol_KCX_p0.mergePage(filling_protocol_KCX_p0)
+                pdfWriter=PyPDF2.PdfFileWriter()
+                pdfWriter.addPage(row_protocol_KCX_p0)
+
+                resultPdfFile = open("__file__"+"../../protocols/"+self.pt_contens1+"_protocol_KCX.pdf", 'wb')
+                pdfWriter.write(resultPdfFile)
+                row_protocol_KCX .close()
+                resultPdfFile.close()
+
+                messagebox.showinfo('Wydruk protokołu', 'Protokół zostanie wydrukowany')
+        else:
+                messagebox.showinfo('Wydruk protokołu', 'Protokół nie zostanie wydrukowany')
+
 
 
 ##################################################################################################################################################################################
