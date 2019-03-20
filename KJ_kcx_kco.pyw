@@ -1135,13 +1135,13 @@ class Application(Frame):
         id15 = self.drzwi.get()
         id16 = self.ent_wydatek.get()
         try:
-            float(self.pt_id16.replace(',', '.'))
+            float(id16.replace(',', '.'))
         except:
             self.warning()
 
         id17 = self.ent_nieszczel.get()
         try:
-            float(self.pt_id17.replace(',', '.'))
+            float(id17.replace(',', '.'))
         except:
             self.warning ()
 
