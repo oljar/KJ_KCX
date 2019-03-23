@@ -1113,7 +1113,7 @@ class Application(Frame):
     def akcept (self):
 
         dt = datetime.datetime.now()
-        now_d = dt.strftime("%d-%m-%Y")
+        now_d = dt.strftime("%Y-%m-%d")
         now_h = dt.strftime("%H:%M")
         contens1 = str(self.ent_nr_fab.get())
         contens2 = self.typ_ahu.get()
@@ -1153,7 +1153,7 @@ class Application(Frame):
         id23 = self.podpis.get()
         id24 = now_d
         id25 = now_h
-        cur.execute('INSERT INTO tab VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',(contens1,contens2,contens3,\
+        cur.execute('INSERT INTO tab VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE(?),?);',(contens1,contens2,contens3,\
         id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14,id15,id16,id17,id18,id19,id20,id21,id22,id23,id24,id25))
 
         messagebox.showinfo("Zapis danych", "Zapisano")

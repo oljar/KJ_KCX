@@ -1,0 +1,90 @@
+Program listuj¹cy urz¹dzenia KCX odebrane przez KJ Klimor Skowarcz 
+
+Sprawdzono nastêpuj¹ce urz¹dznia pomiêdzy datami 2010-10-10 00:00:00 oraz 2020-10-10 00:00:00 
+
+ 
+190062126625000033 
+190062126625000040 
+190062126625000034 
+190062126625000035 
+190062126625000038 
+190062126625000039 
+1 
+20203 
+-------------------------------------------------- 
+
+nr fabryczny: 190062126625000033 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 190062126625000040 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+Uwagi podstawowe :
+izolacja , uszczelki
+wentylatory
+drzwi
+klasa energetyczna , oznaczenie króæów
+zaŒlepki, r¹czki
+estetyka , silikonowanie, rysy
+monta¿ rozdzielnicy
+monta¿ filtrów
+kapturki œrub , znaczki uziemieñ
+nagrzewnica dzia³anie
+taca ociekowa
+os³ona rozdzielnicy
+tabliczka znamionowa , pozosta³e naklejki
+czujniki temperatur
+identyfikacja
+bypass
+Uwagi dodatkowe : hhhjk
+
+Iloœæ b³êdów :17
+--------------------------------------------------
+nr fabryczny: 190062126625000034 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 190062126625000035 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+Uwagi podstawowe :
+dtr-ka , karta produktu
+os³ona rozdzielnicy
+Uwagi dodatkowe : os³
+
+Iloœæ b³êdów :3
+--------------------------------------------------
+nr fabryczny: 190062126625000038 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 190062126625000039 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 1 
+kod produktu: KCX-300 
+nr zlecenia: 30 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 20203 
+kod produktu: KCX-300 
+nr zlecenia: 232 
+Uwagi podstawowe :
+zaŒlepki, r¹czki
+Uwagi dodatkowe :  brudne
+
+
+Iloœæ b³êdów :2
+--------------------------------------------------
+koniec
