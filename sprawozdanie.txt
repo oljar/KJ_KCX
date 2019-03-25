@@ -1,6 +1,6 @@
 Program listuj¹cy urz¹dzenia KCX odebrane przez KJ Klimor Skowarcz 
 
-Sprawdzono nastêpuj¹ce urz¹dznia pomiêdzy datami 2010-10-10 00:00:00 oraz 2020-10-10 00:00:00 
+Sprawdzono nastêpuj¹ce urz¹dznia pomiêdzy datami 2010-01-10 00:00:00 oraz 2020-01-01 00:00:00 
 
  
 190062126625000033 
@@ -23,22 +23,22 @@ nr fabryczny: 190062126625000040
 kod produktu: KCX-500 
 nr zlecenia: 9000049 
 Uwagi podstawowe :
+monta¿ rozdzielnicy
+tabliczka znamionowa , pozosta³e naklejki
+os³ona rozdzielnicy
+identyfikacja
 izolacja , uszczelki
+bypass
+monta¿ filtrów
+klasa energetyczna , oznaczenie króæów
+kapturki œrub , znaczki uziemieñ
+zaŒlepki, r¹czki
+czujniki temperatur
+taca ociekowa
+nagrzewnica dzia³anie
 wentylatory
 drzwi
-klasa energetyczna , oznaczenie króæów
-zaŒlepki, r¹czki
 estetyka , silikonowanie, rysy
-monta¿ rozdzielnicy
-monta¿ filtrów
-kapturki œrub , znaczki uziemieñ
-nagrzewnica dzia³anie
-taca ociekowa
-os³ona rozdzielnicy
-tabliczka znamionowa , pozosta³e naklejki
-czujniki temperatur
-identyfikacja
-bypass
 Uwagi dodatkowe : hhhjk
 
 Iloœæ b³êdów :17
@@ -53,8 +53,8 @@ nr fabryczny: 190062126625000035
 kod produktu: KCX-500 
 nr zlecenia: 9000049 
 Uwagi podstawowe :
-dtr-ka , karta produktu
 os³ona rozdzielnicy
+dtr-ka , karta produktu
 Uwagi dodatkowe : os³
 
 Iloœæ b³êdów :3
