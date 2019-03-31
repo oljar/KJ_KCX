@@ -50,12 +50,14 @@ print(f'Sprawdzono następujące urządznia pomiędzy datami {d1} oraz {d2} \n\n
 plik.write(f'Sprawdzono następujące urządznia pomiędzy datami {d1} oraz {d2} \n\n')
 
 for step in  steps:
-    print(str(step[1]))
-    plik.write(' \n')
-    plik.write(str(step[1]))
-
-
     serial_nr.append(step[1])
+serial_nr=list(set(serial_nr))
+
+for one_nr in serial_nr:
+    print(str(one_nr))
+    plik.write(' \n')
+    plik.write(str(one_nr))
+
 
 
 input()
@@ -81,7 +83,7 @@ d={1:'nr fabryczny',
    14:'wentylatory',
    15:'czujniki temperatur',
    16:'montaż rozdzielnicy',
-   17:'nagrzewnica działanie',
+   17:'nagrzewnica ',
    18:'drzwi',
    19:'wydatek',
    20:'nieszczelność',
@@ -111,21 +113,37 @@ for nr in serial_nr:
         kod_produktu=str(d[2])+': ' +str(steps[0][2])+' '
         nr_zlecenia=str(d[3])+': '+str(steps[0][3])+' '
         header=[nr_fabryczny,kod_produktu,nr_zlecenia]
+
         lista=[]
         print()
         plik.write("\n")
         for step in steps:
-            for i in range(0,24):
+            for i in range(0,23):
                 if step[i]=="Negatyw":
 
                     lista.append(d[i])
                     lista=list(set(lista))
 
 
-            if step[24]=="Negatyw":
-                lista.append(f'Uwagi dodatkowe : {step[25]}')
+            if step[2]=='KCX-300' and float(step[20])>=0.3:
+                   lista.append('przekroczony przeciek wewnętrzny')
 
-        ilosc_blendow=int(len(lista))
+            if step[2]=='KCX-500' and float(step[20])>=0.4:
+                   lista.append('przekroczony przeciek wewnętrzny')
+
+            if step[2]=='KCX-800' and float(step[20])>=0.5:
+                   lista.append('przekroczony przeciek wewnętrzny')
+
+            if step[2]=='KCX-1200' and float(step[20])>=0.3:
+                   lista.append('przekroczony przeciek wewnętrzny')
+
+
+
+
+
+        lista=list(set(lista))
+        lista_dod=[]
+
 
 
         for w in range(len(header)):
@@ -133,15 +151,50 @@ for nr in serial_nr:
             plik.write(header[w])
             plik.write("\n")
 
+
+
+
+        ilosc_blendow=int(len(lista))
+
+
         if ilosc_blendow>0 :
             print('Uwagi podstawowe :')
             plik.write('Uwagi podstawowe :')
             plik.write('\n')
 
+
+
+
+        lista=list(set(lista))
+
         for z in range(len(lista)):
             print (lista[z])
             plik.write(lista[z])
             plik.write('\n')
+
+
+
+        ilosc_blendow_dod_bool = False
+        ilosc_blendow_dod = 0
+
+
+        for step in steps:
+
+            if step[24]=="Negatyw":
+                ilosc_blendow_dod_bool =True
+                lista_dod.append(f'Uwagi dodatkowe : {step[25]}')
+
+        if ilosc_blendow_dod_bool ==True:
+            ilosc_blendow_dod = 1
+
+        lista_dod=list(set(lista_dod))
+
+        ilosc_blendow=ilosc_blendow + ilosc_blendow_dod
+
+        for n in lista_dod:
+            print(n)
+            plik.write(n)
+
 
         print('\n')
         plik.write("\n")

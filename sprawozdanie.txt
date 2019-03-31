@@ -1,19 +1,57 @@
 Program listuj¹cy urz¹dzenia KCX odebrane przez KJ Klimor Skowarcz 
 
-Sprawdzono nastêpuj¹ce urz¹dznia pomiêdzy datami 2010-01-10 00:00:00 oraz 2020-01-01 00:00:00 
+Sprawdzono nastêpuj¹ce urz¹dznia pomiêdzy datami 2019-03-02 00:00:00 oraz 2019-03-30 00:00:00 
 
  
 190062126625000033 
-190062126625000040 
 190062126625000034 
 190062126625000035 
+1 
 190062126625000038 
 190062126625000039 
-1 
+190062126625000040 
 20203 
 -------------------------------------------------- 
 
 nr fabryczny: 190062126625000033 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 190062126625000034 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+Uwagi podstawowe :
+przekroczony przeciek wewnêtrzny
+
+Iloœæ b³êdów :1
+--------------------------------------------------
+nr fabryczny: 190062126625000035 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+Uwagi podstawowe :
+dtr-ka , karta produktu
+os³ona rozdzielnicy
+Uwagi dodatkowe : os³
+Iloœæ b³êdów :3
+--------------------------------------------------
+nr fabryczny: 1 
+kod produktu: KCX-300 
+nr zlecenia: 30 
+
+Iloœæ b³êdów :0
+--------------------------------------------------
+nr fabryczny: 190062126625000038 
+kod produktu: KCX-500 
+nr zlecenia: 9000049 
+Uwagi podstawowe :
+przekroczony przeciek wewnêtrzny
+estetyka , silikonowanie, rysy
+
+Iloœæ b³êdów :2
+--------------------------------------------------
+nr fabryczny: 190062126625000039 
 kod produktu: KCX-500 
 nr zlecenia: 9000049 
 
@@ -24,58 +62,23 @@ kod produktu: KCX-500
 nr zlecenia: 9000049 
 Uwagi podstawowe :
 monta¿ rozdzielnicy
-tabliczka znamionowa , pozosta³e naklejki
-os³ona rozdzielnicy
-identyfikacja
-izolacja , uszczelki
-bypass
-monta¿ filtrów
-klasa energetyczna , oznaczenie króæów
 kapturki œrub , znaczki uziemieñ
-zaŒlepki, r¹czki
-czujniki temperatur
-taca ociekowa
-nagrzewnica dzia³anie
-wentylatory
-drzwi
+nagrzewnica 
 estetyka , silikonowanie, rysy
-Uwagi dodatkowe : hhhjk
-
-Iloœæ b³êdów :17
---------------------------------------------------
-nr fabryczny: 190062126625000034 
-kod produktu: KCX-500 
-nr zlecenia: 9000049 
-
-Iloœæ b³êdów :0
---------------------------------------------------
-nr fabryczny: 190062126625000035 
-kod produktu: KCX-500 
-nr zlecenia: 9000049 
-Uwagi podstawowe :
+zaŒlepki, r¹czki
+klasa energetyczna , oznaczenie króæów
+bypass
+tabliczka znamionowa , pozosta³e naklejki
+taca ociekowa
+monta¿ filtrów
+wentylatory
+czujniki temperatur
 os³ona rozdzielnicy
-dtr-ka , karta produktu
-Uwagi dodatkowe : os³
-
-Iloœæ b³êdów :3
---------------------------------------------------
-nr fabryczny: 190062126625000038 
-kod produktu: KCX-500 
-nr zlecenia: 9000049 
-
-Iloœæ b³êdów :0
---------------------------------------------------
-nr fabryczny: 190062126625000039 
-kod produktu: KCX-500 
-nr zlecenia: 9000049 
-
-Iloœæ b³êdów :0
---------------------------------------------------
-nr fabryczny: 1 
-kod produktu: KCX-300 
-nr zlecenia: 30 
-
-Iloœæ b³êdów :0
+izolacja , uszczelki
+drzwi
+identyfikacja
+Uwagi dodatkowe : hhhjk
+Iloœæ b³êdów :17
 --------------------------------------------------
 nr fabryczny: 20203 
 kod produktu: KCX-300 
@@ -83,7 +86,6 @@ nr zlecenia: 232
 Uwagi podstawowe :
 zaŒlepki, r¹czki
 Uwagi dodatkowe :  brudne
-
 
 Iloœæ b³êdów :2
 --------------------------------------------------
